@@ -26,6 +26,46 @@ class Character{
     }
     
     func attaquer(){
+        var selected : Int
+        print("Choisir votre personnage\na.\(name)\nb.\(name)\nc.\(name)\n")
+        if let str = readLine(){
+            if str != "a" || str != "b" || str != "c"{
+                print("erreur de saisi")
+            }
+            if str == "a"{
+                selected = 0
+            }
+            if str == "b"{
+                selected = 1
+            }
+            if str == "c"{
+                selected = 2
+            }
+            else{ return}
+        }
+        if canHeal == true{
+            print("a.attaquer\nb.soigner")
+            if let str = readLine(){
+                if str != "a" && str != "b"{
+                    print("erreur de saisi")
+                }
+                if str == "a"{
+                    selected = 0
+                }
+                if str == "b"{
+                    selected = 1
+                }
+                else {return}
+            }
+        }
+        
+        
+        // Choissisez votre personnage
+        // Que souhaitez vous faire ? 1.attaquer --> 2.soigner
+        // Si 1 : choisissez l'adversaire --> 1; 2; 3 ---> attaque
+        // Si 2 : Qui souhaiter vous soigner ? --> 1; 2; 3 ---> soigner
+        // check point de vie des 3 adversaire --> si <=0 (func endGame) --> si >0 (game)
+        
         
     }
     
