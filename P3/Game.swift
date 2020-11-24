@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+class Game{
+
+    var turnCount : Int
+    
+    init(turnCount : Int) {
+        self.turnCount = turnCount
+        
+    }
+}
