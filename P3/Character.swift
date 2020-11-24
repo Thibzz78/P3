@@ -14,7 +14,7 @@ class Character{
     var name : String
     var canHeal : Bool
     var healPoint : Int
-    var arme = Weapon()
+    var arme = Weapon(weapon1: 50)
     
     init(lifePoint : Int, attackPoint : Int, name : String, canHeal : Bool,  healPoint : Int, arme : Weapon) {
         self.lifePoint = lifePoint

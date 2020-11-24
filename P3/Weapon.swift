@@ -9,4 +9,9 @@ import Foundation
 
 class Weapon{
     
+    var weapon1 : Int
+    
+    init(weapon1 : Int) {
+        self.weapon1 = weapon1
+    }
 }

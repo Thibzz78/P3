@@ -7,5 +7,12 @@
 
 import Foundation
 
-print("Hello, World!")
-
+var team1 = [Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: true, healPoint: 0, arme: Weapon(weapon1: 0)),
+             Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: true, healPoint: 0, arme: Weapon(weapon1: 0)),
+             Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: true, healPoint: 0, arme: Weapon(weapon1: 0))
+            ]
+var team2 = [Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: true, healPoint: 0, arme: Weapon(weapon1: 0)),
+             Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: true, healPoint: 0, arme: Weapon(weapon1: 0)),
+             Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: true, healPoint: 0, arme: Weapon(weapon1: 0))
+            ]
+team1[0].createTeam()
