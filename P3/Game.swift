@@ -7,20 +7,23 @@
 
 import Foundation
 
-class Game: Character{
+class Game{
 
-    override init(lifePoint: Int, attackPoint: Int, name: String, canHeal: Bool, healPoint: Int, arme: Weapon) {
         var turnCount : Int
-        var team1 = [Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: arme),
-                     Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: arme),
-                     Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: arme)
+        var team1 = [Character(lifePoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: Weapon(weapon1: 0)),
+                     Character(lifePoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: Weapon(weapon1: 0)),
+                     Character(lifePoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: Weapon(weapon1: 0))
                     ]
-        var team2 = [Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: arme),
-                     Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: arme),
-                     Character(lifePoint: 0, attackPoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: arme)
+        var team2 = [Character(lifePoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: Weapon(weapon1: 0)),
+                     Character(lifePoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: Weapon(weapon1: 0)),
+                     Character(lifePoint: 0, name: "Unknow", canHeal: false, healPoint: 0, arme: Weapon(weapon1: 0))
                     ]
-        super.init(lifePoint: lifePoint, attackPoint: attackPoint, name: name, canHeal: canHeal, healPoint: healPoint, arme: arme)
+    init(turnCount: Int, team1: [Character], team2: [Character]) {
+        self.turnCount = turnCount
+        self.team1 = team1
+        self.team2 = team2
     }
+    
     func createTeam(){
         var joueur1 : String
         print("Joueur 1, rentrer votre nom")

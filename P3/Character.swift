@@ -10,15 +10,13 @@ import Foundation
 
 class Character{
     var lifePoint : Int
-    var attackPoint : Int
     var name : String
     var canHeal : Bool
     var healPoint : Int
-    var arme = Weapon(weapon1: 50)
+    var arme = Weapon(weapon1: 0)
     
-    init(lifePoint : Int, attackPoint : Int, name : String, canHeal : Bool,  healPoint : Int, arme : Weapon) {
+    init(lifePoint : Int, name : String, canHeal : Bool,  healPoint : Int, arme : Weapon) {
         self.lifePoint = lifePoint
-        self.attackPoint = attackPoint
         self.name = name
         self.canHeal = canHeal
         self.healPoint = healPoint
