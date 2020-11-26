@@ -24,10 +24,10 @@ class Character{
     }
     
     func attaquer(){
-        var selected : Int
-        print("Choisir votre personnage\na.\(name)\nb.\(name)\nc.\(name)\n")
+        var selected = 0
+        print("Choisir votre personnage\na.\(team1[0].name)\nb.\(team1[1].name)\nc.\(team1[2].name)")
         if let str = readLine(){
-            if str != "a" || str != "b" || str != "c"{
+            if str != "a" && str != "b" && str != "c"{
                 print("erreur de saisi")
             }
             if str == "a"{
