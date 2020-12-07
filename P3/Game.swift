@@ -27,9 +27,16 @@ class Game{
         print("Creation team1")
         repeat {
             print("Entrer un nom pour le personnage \(team1[i].name)")
-            let name = String(readLine() ?? "")
-            team1[i].name = name
-            print("choisir une arme pour \(team1[i].name)")
+            
+
+            if let name = readLine(){
+                if name != "" && name != " " && name != team1[i].name{
+                team1[i].name = name
+                }
+                else{
+                    print("erreur")
+                }
+            }
             
             for i in 0...weaponCount {
                 print("\(i) : \(weapons[i].name) \(weapons[i].damage) PA")
