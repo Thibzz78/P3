@@ -200,34 +200,33 @@ class Game{
                     print("erreur de saisi")
                     continue
                 }
-                Character.attaquer(team2[sel])
+ //               Character.attaquer(team1[sel])
             }
             if selected1 == 2{
                 print("selectionner le joueur que vous souhaiter soigner")
                 for i in 0...countTeam1{
                 print("\(i) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
                 }
+                var sel = Int(readLine() ?? "Unknow") ?? 0
+                switch sel {
+                case 1:
+                    sel = 0
+                case 2:
+                    sel = 1
+                case 3:
+                    sel = 2
+                default:
+                    print("erreur de saisi")
+                    continue
+                }
             }
             
-            
-         
-            
-            
-            
-            
-            
-            
-            
-            
         }while totalLifeTeam1 > 0 || totalLifeTeam2 > 0
-        // boucle sur team 1 ( selectionner le joueur, check point de vie, check canHeal)
-        // selectionner le joueur a attaquer
-        // lancer la func attaquer
         endGame()
     }
     
 
     func endGame(){
-        print("POUETTTTTT")
+        print("FIN DE LA PARTIE !!!!!!")
     }
 }
