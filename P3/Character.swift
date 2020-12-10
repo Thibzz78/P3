@@ -23,7 +23,7 @@ class Character{
         self.weapons = weapons
     }
     
-    func attaquer(){
+    func attaquer(char : Character){
 
     }
     

@@ -27,21 +27,19 @@ class Game{
         print("Creation team1")
         repeat {
             print("Entrer un nom pour le personnage \(team1[i].name)")
-            
-
             if let name = readLine(){
                 if name != "" && name != " " && name != team1[i].name{
-                team1[i].name = name
+                    team1[i].name = name
                 }
                 else{
                     print("erreur")
+                    continue
                 }
             }
-            
             for i in 0...weaponCount {
                 print("\(i) : \(weapons[i].name) \(weapons[i].damage) PA")
             }
-            let selected = Int(readLine() ?? "unknow") ?? 0
+            let selected = Int(readLine() ?? "unknow") ?? 6
             switch selected {
             case 0:
                 team1[i].weapons = weapons[0]
@@ -56,7 +54,7 @@ class Game{
             case 5:
                 team1[i].weapons = weapons[5]
             default:
-                print("erreur : aucune arme selectionné, arme par default : \(team1[i].weapons)")
+                print("erreur : aucune arme selectionné, arme par default : \(team1[i].weapons.name) \(team1[i].weapons.damage) PA")
             }
             i = i + 1
             
@@ -108,7 +106,9 @@ class Game{
     }
     
     func startGame(){
-    
+        // boucle sur team 1 ( selectionner le joueur, check point de vie, check canHeal)
+        // selectionner le joueur a attaquer
+        // lancer la func attaquer
     }
     
     func endGame(){
