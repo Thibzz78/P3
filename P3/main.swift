@@ -16,12 +16,15 @@ var weapons: [Weapon] = [
     Weapon(name: "🚀 Bombe nucléaire", damage: 50)
 ]
 
-var war = Warrior()
-var mag = Magus()
-var pri = Priest()
+var warTeam1 = Warrior()
+var magTeam1 = Magus()
+var priTeam1 = Priest()
+var warTeam2 = Warrior()
+var magTeam2 = Magus()
+var priTeam2 = Priest()
 
-var team1 = [war, mag, pri]
-var team2 = [war, mag, pri]
+var team1 = [warTeam1, magTeam1, priTeam1]
+var team2 = [warTeam2, magTeam2, priTeam2]
 var createTeam = Game(team1: team1, team2: team2)
 
 createTeam.createTeam()

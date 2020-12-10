@@ -18,6 +18,19 @@ class Game{
         self.team2 = team2
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func createTeam(){
         let countTeam1 = team1.count - 1
         let countTeam2 = team2.count - 1
@@ -28,14 +41,23 @@ class Game{
         repeat {
             print("Entrer un nom pour le personnage \(team1[i].name)")
             if let name = readLine(){
-                if name != "" && name != " " && name != team1[i].name{
+                if i == 0 && name != "" && name != " " && name != team1[1].name && name != team1[2].name{
+                    team1[i].name = name
+                }
+                else if i == 1 && name != "" && name != " " && name != team1[0].name && name != team1[2].name{
+                    team1[i].name = name
+                }
+                else if i == 2 && name != "" && name != " " && name != team1[0].name && name != team1[1].name{
                     team1[i].name = name
                 }
                 else{
-                    print("erreur")
+                    print("le nom est incorrect ou existe déjà")
                     continue
                 }
             }
+            
+            print("choisir une arme pour \(team1[i].name)")
+            
             for i in 0...weaponCount {
                 print("\(i) : \(weapons[i].name) \(weapons[i].damage) PA")
             }
@@ -65,12 +87,40 @@ class Game{
         print("\(team1[2].name) a selectionné l'arme : \(team1[2].weapons.name)")
         print("////////////////////////////////////////////////////////////////")
         print("////////////////////////////////////////////////////////////////")
+        
+        
+        
+        
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        
+        
         i = 0
         print("Creation team2")
         repeat {
             print("Entrer un nom pour le personnage \(team2[i].name)")
-            let name = String(readLine() ?? "")
-            team2[i].name = name
+            if let name = readLine(){
+                if name == team1[0].name || name == team1[1].name || name == team1[2].name{
+                    print("le nom existe déjà dans la team1")
+                    continue
+                }
+                else if i == 0 && name != "" && name != " " && name != team2[1].name && name != team2[2].name{
+                    team2[i].name = name
+                }
+                else if i == 1 && name != "" && name != " " && name != team2[0].name && name != team2[2].name{
+                    team2[i].name = name
+                }
+                else if i == 2 && name != "" && name != " " && name != team2[0].name && name != team2[1].name{
+                    team2[i].name = name
+                }
+                else{
+                    print("le nom est incorrect ou existe déjà")
+                    continue
+                    }
+                }
+
             print("choisir une arme pour \(team2[i].name)")
             
             for i in 0...weaponCount {
@@ -105,13 +155,41 @@ class Game{
         startGame()
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func startGame(){
+        print("Pouet")
         // boucle sur team 1 ( selectionner le joueur, check point de vie, check canHeal)
         // selectionner le joueur a attaquer
         // lancer la func attaquer
+        endGame()
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func endGame(){
-        
+        print("POUETTTTTT")
     }
 }
