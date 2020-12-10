@@ -17,20 +17,7 @@ class Game{
         self.team1 = team1
         self.team2 = team2
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     func createTeam(){
         let countTeam1 = team1.count - 1
         let countTeam2 = team2.count - 1
@@ -82,19 +69,11 @@ class Game{
             
         } while i != countTeam1 + 1
         
-        print("\(team1[0].name) a selectionné l'arme : \(team1[0].weapons.name)")
-        print("\(team1[1].name) a selectionné l'arme : \(team1[1].weapons.name)")
-        print("\(team1[2].name) a selectionné l'arme : \(team1[2].weapons.name)")
+        print("\(team1[0].name) a selectionné l'arme : \(team1[0].weapons.name) \(team1[0].weapons.damage) PA")
+        print("\(team1[1].name) a selectionné l'arme : \(team1[1].weapons.name) \(team1[1].weapons.damage) PA")
+        print("\(team1[2].name) a selectionné l'arme : \(team1[2].weapons.name) \(team1[2].weapons.damage) PA")
         print("////////////////////////////////////////////////////////////////")
         print("////////////////////////////////////////////////////////////////")
-        
-        
-        
-        
-        
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        
         
         
         i = 0
@@ -146,49 +125,108 @@ class Game{
             i = i + 1
             
         } while i != countTeam2 + 1
-        print("\(team2[0].name) a selectionné l'arme : \(team2[0].weapons.name)")
-        print("\(team2[1].name) a selectionné l'arme : \(team2[1].weapons.name)")
-        print("\(team2[2].name) a selectionné l'arme : \(team2[2].weapons.name)")
+        print("\(team2[0].name) a selectionné l'arme : \(team2[0].weapons.name) \(team2[0].weapons.damage) PA")
+        print("\(team2[1].name) a selectionné l'arme : \(team2[1].weapons.name) \(team2[1].weapons.damage) PA")
+        print("\(team2[2].name) a selectionné l'arme : \(team2[2].weapons.name) \(team2[2].weapons.damage) PA")
         print("////////////////////////////////////////////////////////////////")
         print("////////////////////////////////////////////////////////////////")
         print("DEMARRAGE DE LA PARTIE !")
         startGame()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     func startGame(){
-        print("Pouet")
+        var totalLifeTeam1 : Int = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
+        var totalLifeTeam2 : Int = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
+        var i : Int = 0
+        var countTeam1 = team1.count - 1
+        var countTeam2 = team2.count - 1
+        
+        repeat{
+            print("Team 1 : veuillez choisir un joueur")
+            for i in 0...countTeam1{
+                print("\(i + 1) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
+            }
+            var selected = Int(readLine() ?? "Unknow") ?? 0
+            switch selected {
+            case 1:
+                selected = 0
+            case 2:
+                selected = 1
+            case 3:
+                selected = 2
+            default:
+                print("erreur de saisi")
+                continue
+            }
+            print("Choissiez une option")
+            if team1[selected].canHeal == true{
+                print("1 : Attaquer")
+                print("2 : Soigner")
+            }
+            else{
+                print("1 : Attaquer")
+            }
+            var selected1 = Int(readLine() ?? "Unknow") ?? 0
+            switch selected1 {
+            case 1:
+                selected1 = 1
+            case 2:
+                if team1[selected].canHeal == true{
+                selected1 = 2
+                }else{
+                print("ce personnage ne peut pas soigner")
+                continue
+                }
+            default:
+                print("erreur de saisi")
+                continue
+            }
+            
+            if selected1 == 1{
+                print("Selectionner le joueur que vous souhaiter attaquer")
+                for i in 0...countTeam2{
+                    print("\(i + 1) :\(team2[i].name) \(team2[i].lifePoint) - \(team2[i].weapons.name) \(team2[i].weapons.damage)")
+                }
+                var sel = Int(readLine() ?? "Unknow") ?? 0
+                switch sel {
+                case 1:
+                    sel = 0
+                case 2:
+                    sel = 1
+                case 3:
+                    sel = 2
+                default:
+                    print("erreur de saisi")
+                    continue
+                }
+                Character.attaquer(team2[sel])
+            }
+            if selected1 == 2{
+                print("selectionner le joueur que vous souhaiter soigner")
+                for i in 0...countTeam1{
+                print("\(i) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
+                }
+            }
+            
+            
+         
+            
+            
+            
+            
+            
+            
+            
+            
+        }while totalLifeTeam1 > 0 || totalLifeTeam2 > 0
         // boucle sur team 1 ( selectionner le joueur, check point de vie, check canHeal)
         // selectionner le joueur a attaquer
         // lancer la func attaquer
         endGame()
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     func endGame(){
         print("POUETTTTTT")
     }

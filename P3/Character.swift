@@ -24,7 +24,7 @@ class Character{
     }
     
     func attaquer(char : Character){
-
+        print("bonjour")
     }
     
 }
