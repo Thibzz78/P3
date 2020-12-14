@@ -23,8 +23,24 @@ class Character{
         self.weapons = weapons
     }
     
-    func attaquer(char : Character){
-        print("bonjour")
+    func attaquer(attacked : Character){
+        if attacked.lifePoint <= 0 {
+            print("Le joueur \(attacked.name) est mort")
+        }else{
+            print("attaque du joueur \(attacked.name) avec l'arme \(weapons.name) \(weapons.damage) PA")
+            attacked.lifePoint = attacked.lifePoint - weapons.damage
+            print("point de vie restant : \(attacked.lifePoint)")
+        }
     }
     
+    func heal(selected : Character){
+        if selected.lifePoint <= 0 {
+            print("Le joueur \(selected.name) est mort")
+        }
+        else{
+            print("Le joueur \(name) soigne le joueur \(selected.name)")
+            selected.lifePoint = selected.lifePoint + team1[2].healPoint
+            print("point de vie restant : \(selected.lifePoint)")
+        }
+    }
 }

@@ -12,15 +12,17 @@ class Game{
         var turnCount : Int = 0
         var team1 : [Character]
         var team2 : [Character]
+        let countTeam1 : Int
+        let countTeam2 : Int
     
     init(team1: [Character], team2: [Character]) {
         self.team1 = team1
         self.team2 = team2
+        countTeam1 = team1.count - 1
+        countTeam2 = team1.count - 1
     }
 
     func createTeam(){
-        let countTeam1 = team1.count - 1
-        let countTeam2 = team2.count - 1
         var i : Int = 0
         let weaponCount = weapons.count - 1
         
@@ -138,23 +140,37 @@ class Game{
     func startGame(){
         var totalLifeTeam1 : Int = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
         var totalLifeTeam2 : Int = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
-        var i : Int = 0
-        var countTeam1 = team1.count - 1
-        var countTeam2 = team2.count - 1
         
         repeat{
             print("Team 1 : veuillez choisir un joueur")
             for i in 0...countTeam1{
-                print("\(i + 1) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
+                if team1[i].lifePoint > 0{
+                    print("\(i + 1) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
+                }
             }
             var selected = Int(readLine() ?? "Unknow") ?? 0
             switch selected {
             case 1:
-                selected = 0
+                if team1[0].lifePoint > 0{
+                    selected = 0
+                }else{
+                    print("Ce joueur est mort")
+                    continue
+                }
             case 2:
-                selected = 1
+                if team1[1].lifePoint > 0{
+                    selected = 1
+                }else{
+                    print("Ce joueur est mort")
+                    continue
+                }
             case 3:
-                selected = 2
+                if team1[2].lifePoint > 0{
+                    selected = 2
+                }else{
+                    print("Ce joueur est mort")
+                    continue
+                }
             default:
                 print("erreur de saisi")
                 continue
@@ -200,7 +216,7 @@ class Game{
                     print("erreur de saisi")
                     continue
                 }
- //               Character.attaquer(team1[sel])
+                team1[selected].attaquer(attacked: team2[sel])
             }
             if selected1 == 2{
                 print("selectionner le joueur que vous souhaiter soigner")
@@ -210,17 +226,35 @@ class Game{
                 var sel = Int(readLine() ?? "Unknow") ?? 0
                 switch sel {
                 case 1:
-                    sel = 0
+                    if team1[0].lifePoint <= 0{
+                        print("Ce joueur est mort")
+                        continue
+                    }else{
+                        sel = 0
+                    }
                 case 2:
-                    sel = 1
+                    if team1[1].lifePoint <= 0{
+                        print("Ce joueur est mort")
+                        continue
+                    }else{
+                        sel = 1
+                    }
                 case 3:
-                    sel = 2
+                    if team1[2].lifePoint <= 0{
+                        print("Ce joueur est mort")
+                        continue
+                    }else{
+                        sel = 2
+                    }
                 default:
                     print("erreur de saisi")
                     continue
                 }
+                team1[2].heal(selected: team1[sel])
             }
-            
+            totalLifeTeam1 = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
+            totalLifeTeam2 = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
+            turnCount = turnCount + 1
         }while totalLifeTeam1 > 0 || totalLifeTeam2 > 0
         endGame()
     }
@@ -228,5 +262,6 @@ class Game{
 
     func endGame(){
         print("FIN DE LA PARTIE !!!!!!")
+        print("La team ..... a gagné en \(turnCount) tours")
     }
 }
