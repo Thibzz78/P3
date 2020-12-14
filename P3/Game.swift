@@ -136,7 +136,6 @@ class Game{
         startGame()
     }
 
-    
     func startGame(){
         var totalLifeTeam1 : Int = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
         var totalLifeTeam2 : Int = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
@@ -256,12 +255,24 @@ class Game{
             totalLifeTeam2 = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
             turnCount = turnCount + 1
         }while totalLifeTeam1 > 0 || totalLifeTeam2 > 0
-        endGame()
+        endGame(team1Life: totalLifeTeam1, team2Life: totalLifeTeam2)
     }
     
-
-    func endGame(){
+    func endGame(team1Life : Int, team2Life: Int){
         print("FIN DE LA PARTIE !!!!!!")
-        print("La team ..... a gagné en \(turnCount) tours")
+        if team1Life > 0{
+            print("La team 1 a gagné en \(turnCount) tours")
+        }else{
+            print("La team 2 a gagné en \(turnCount) tours")
+        }
+        print("Total Team1 lifePoint : \(team1Life)")
+        for i in 0...countTeam1{
+            print("\(i + 1) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
+        }
+        print("Total Team2 lifePoint : \(team2Life)")
+        for i in 0...countTeam2{
+            print("\(i + 1) :\(team2[i].name) \(team2[i].lifePoint) - \(team2[i].weapons.name) \(team2[i].weapons.damage)")
+        }
+        return
     }
 }
