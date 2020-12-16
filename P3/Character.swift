@@ -32,15 +32,4 @@ class Character{
             print("point de vie restant : \(attacked.lifePoint)")
         }
     }
-    
-    func heal(selected : Character){
-        if selected.lifePoint <= 0 {
-            print("Le joueur \(selected.name) est mort")
-        }
-        else{
-            print("Le joueur \(name) soigne le joueur \(selected.name)")
-            selected.lifePoint = selected.lifePoint + team1[2].healPoint
-            print("point de vie restant : \(selected.lifePoint)")
-        }
-    }
 }

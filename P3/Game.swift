@@ -12,6 +12,7 @@ class Game{
         var turnCount : Int = 0
         var team1 : [Character]
         var team2 : [Character]
+        var teamsNames = [String]()
         let countTeam1 : Int
         let countTeam2 : Int
     
@@ -23,29 +24,34 @@ class Game{
     }
 
     func createTeam(){
+        
+        askForName(team: team1, teamName: "TEAM1")
+        
+        askForName(team: team2, teamName: "TEAM2")
+        
+        showTeams()
+        
+        startGame()
+    }
+
+    private func askForName(team : [Character], teamName : String){
         var i : Int = 0
         let weaponCount = weapons.count - 1
         
-        print("Creation team1")
+        print("Creation \(teamName)")
         repeat {
-            print("Entrer un nom pour le personnage \(team1[i].name)")
+            print("Entrer un nom pour le personnage \(team[i].name)")
             if let name = readLine(){
-                if i == 0 && name != "" && name != " " && name != team1[1].name && name != team1[2].name{
-                    team1[i].name = name
-                }
-                else if i == 1 && name != "" && name != " " && name != team1[0].name && name != team1[2].name{
-                    team1[i].name = name
-                }
-                else if i == 2 && name != "" && name != " " && name != team1[0].name && name != team1[1].name{
-                    team1[i].name = name
-                }
-                else{
+                if(!teamsNames.contains(name) && name != "" && name != " "){
+                    teamsNames.append(name)
+                    team[i].name = name
+                }else{
                     print("le nom est incorrect ou existe déjà")
                     continue
                 }
             }
             
-            print("choisir une arme pour \(team1[i].name)")
+            print("choisir une arme pour \(team[i].name)")
             
             for i in 0...weaponCount {
                 print("\(i) : \(weapons[i].name) \(weapons[i].damage) PA")
@@ -53,118 +59,78 @@ class Game{
             let selected = Int(readLine() ?? "unknow") ?? 6
             switch selected {
             case 0:
-                team1[i].weapons = weapons[0]
+                team[i].weapons = weapons[0]
             case 1:
-                team1[i].weapons = weapons[1]
+                team[i].weapons = weapons[1]
             case 2:
-                team1[i].weapons = weapons[2]
+                team[i].weapons = weapons[2]
             case 3:
-                team1[i].weapons = weapons[3]
+                team[i].weapons = weapons[3]
             case 4:
-                team1[i].weapons = weapons[4]
+                team[i].weapons = weapons[4]
             case 5:
-                team1[i].weapons = weapons[5]
+                team[i].weapons = weapons[5]
             default:
-                print("erreur : aucune arme selectionné, arme par default : \(team1[i].weapons.name) \(team1[i].weapons.damage) PA")
+                print("erreur : aucune arme selectionné, arme par default : \(team[i].weapons.name) \(team[i].weapons.damage) PA")
             }
             i = i + 1
             
         } while i != countTeam1 + 1
-        
+    }
+    
+    
+    private func showTeams(){
+        print("////////////////////////////////////////////////////////////////")
         print("\(team1[0].name) a selectionné l'arme : \(team1[0].weapons.name) \(team1[0].weapons.damage) PA")
         print("\(team1[1].name) a selectionné l'arme : \(team1[1].weapons.name) \(team1[1].weapons.damage) PA")
         print("\(team1[2].name) a selectionné l'arme : \(team1[2].weapons.name) \(team1[2].weapons.damage) PA")
         print("////////////////////////////////////////////////////////////////")
-        print("////////////////////////////////////////////////////////////////")
-        
-        
-        i = 0
-        print("Creation team2")
-        repeat {
-            print("Entrer un nom pour le personnage \(team2[i].name)")
-            if let name = readLine(){
-                if name == team1[0].name || name == team1[1].name || name == team1[2].name{
-                    print("le nom existe déjà dans la team1")
-                    continue
-                }
-                else if i == 0 && name != "" && name != " " && name != team2[1].name && name != team2[2].name{
-                    team2[i].name = name
-                }
-                else if i == 1 && name != "" && name != " " && name != team2[0].name && name != team2[2].name{
-                    team2[i].name = name
-                }
-                else if i == 2 && name != "" && name != " " && name != team2[0].name && name != team2[1].name{
-                    team2[i].name = name
-                }
-                else{
-                    print("le nom est incorrect ou existe déjà")
-                    continue
-                    }
-                }
-
-            print("choisir une arme pour \(team2[i].name)")
-            
-            for i in 0...weaponCount {
-                print("\(i) : \(weapons[i].name) \(weapons[i].damage) PA")
-            }
-            let selected = Int(readLine() ?? "unknow") ?? 0
-            switch selected {
-            case 0:
-                team2[i].weapons = weapons[0]
-            case 1:
-                team2[i].weapons = weapons[1]
-            case 2:
-                team2[i].weapons = weapons[2]
-            case 3:
-                team2[i].weapons = weapons[3]
-            case 4:
-                team2[i].weapons = weapons[4]
-            case 5:
-                team2[i].weapons = weapons[5]
-            default:
-                print("erreur : aucune arme selectionné, arme par default : \(team2[i].weapons)")
-            }
-            i = i + 1
-            
-        } while i != countTeam2 + 1
         print("\(team2[0].name) a selectionné l'arme : \(team2[0].weapons.name) \(team2[0].weapons.damage) PA")
         print("\(team2[1].name) a selectionné l'arme : \(team2[1].weapons.name) \(team2[1].weapons.damage) PA")
         print("\(team2[2].name) a selectionné l'arme : \(team2[2].weapons.name) \(team2[2].weapons.damage) PA")
-        print("////////////////////////////////////////////////////////////////")
-        print("////////////////////////////////////////////////////////////////")
         print("DEMARRAGE DE LA PARTIE !")
-        startGame()
     }
-
+    
+    
+    
     func startGame(){
         var totalLifeTeam1 : Int = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
         var totalLifeTeam2 : Int = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
+        var isTeam1Turn = true
+        var team : [Character]
+        var adverseTeam : [Character]
+        var numberTeam : Int = 1
+        
+        
+        team = team1
+        adverseTeam = team2
         
         repeat{
-            print("Team 1 : veuillez choisir un joueur")
+        
+            print("Team \(numberTeam) : veuillez choisir un joueur")
             for i in 0...countTeam1{
-                if team1[i].lifePoint > 0{
-                    print("\(i + 1) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
+                if team[i].lifePoint > 0{
+                    print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
                 }
             }
             var selected = Int(readLine() ?? "Unknow") ?? 0
             switch selected {
             case 1:
-                if team1[0].lifePoint > 0{
+                if team[0].lifePoint > 0{
                     selected = 0
                 }else{
                     print("Ce joueur est mort")
                     continue
                 }
             case 2:
-                if team1[1].lifePoint > 0{
+                if team[1].lifePoint > 0{
                     selected = 1
                 }else{
                     print("Ce joueur est mort")
                     continue
                 }
             case 3:
-                if team1[2].lifePoint > 0{
+                if team[2].lifePoint > 0{
                     selected = 2
                 }else{
                     print("Ce joueur est mort")
@@ -175,7 +141,7 @@ class Game{
                 continue
             }
             print("Choissiez une option")
-            if team1[selected].canHeal == true{
+            if team[selected].canHeal == true{
                 print("1 : Attaquer")
                 print("2 : Soigner")
             }
@@ -187,7 +153,7 @@ class Game{
             case 1:
                 selected1 = 1
             case 2:
-                if team1[selected].canHeal == true{
+                if team[selected].canHeal == true{
                 selected1 = 2
                 }else{
                 print("ce personnage ne peut pas soigner")
@@ -201,45 +167,61 @@ class Game{
             if selected1 == 1{
                 print("Selectionner le joueur que vous souhaiter attaquer")
                 for i in 0...countTeam2{
-                    print("\(i + 1) :\(team2[i].name) \(team2[i].lifePoint) - \(team2[i].weapons.name) \(team2[i].weapons.damage)")
+                    print("\(i + 1) :\(adverseTeam[i].name) \(adverseTeam[i].lifePoint) - \(adverseTeam[i].weapons.name) \(adverseTeam[i].weapons.damage)")
                 }
                 var sel = Int(readLine() ?? "Unknow") ?? 0
                 switch sel {
                 case 1:
-                    sel = 0
+                    if adverseTeam[0].lifePoint > 0{
+                        sel = 0
+                    }else{
+                        print("Ce joueur est mort")
+                        continue
+                    }
                 case 2:
-                    sel = 1
+                    if adverseTeam[1].lifePoint > 0{
+                        sel = 1
+                    }else{
+                        print("Ce joueur est mort")
+                        continue
+                    }
                 case 3:
-                    sel = 2
+                    if adverseTeam[2].lifePoint > 0{
+                        sel = 2
+                    }else{
+                        print("Ce joueur est mort")
+                        continue
+                    }
                 default:
                     print("erreur de saisi")
                     continue
                 }
-                team1[selected].attaquer(attacked: team2[sel])
+                myrandom(char: team[selected])
+                team[selected].attaquer(attacked: adverseTeam[sel])
             }
             if selected1 == 2{
                 print("selectionner le joueur que vous souhaiter soigner")
                 for i in 0...countTeam1{
-                print("\(i) :\(team1[i].name) \(team1[i].lifePoint) - \(team1[i].weapons.name) \(team1[i].weapons.damage)")
+                print("\(i) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
                 }
                 var sel = Int(readLine() ?? "Unknow") ?? 0
                 switch sel {
                 case 1:
-                    if team1[0].lifePoint <= 0{
+                    if team[0].lifePoint <= 0{
                         print("Ce joueur est mort")
                         continue
                     }else{
                         sel = 0
                     }
                 case 2:
-                    if team1[1].lifePoint <= 0{
+                    if team[1].lifePoint <= 0{
                         print("Ce joueur est mort")
                         continue
                     }else{
                         sel = 1
                     }
                 case 3:
-                    if team1[2].lifePoint <= 0{
+                    if team[2].lifePoint <= 0{
                         print("Ce joueur est mort")
                         continue
                     }else{
@@ -249,13 +231,48 @@ class Game{
                     print("erreur de saisi")
                     continue
                 }
-                team1[2].heal(selected: team1[sel])
+                let priest = Priest()
+                priest.heal(priest: team[2], selected: team[sel])
             }
             totalLifeTeam1 = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
             totalLifeTeam2 = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
             turnCount = turnCount + 1
-        }while totalLifeTeam1 > 0 || totalLifeTeam2 > 0
+            if isTeam1Turn == true{
+                team = team2
+                numberTeam = 2
+                adverseTeam = team1
+                isTeam1Turn = false
+            }
+            else{
+                team = team1
+                numberTeam = 1
+                adverseTeam = team2
+                isTeam1Turn = true
+            }
+        }while totalLifeTeam1 > 0 && totalLifeTeam2 > 0
         endGame(team1Life: totalLifeTeam1, team2Life: totalLifeTeam2)
+    }
+    
+    func myrandom(char : Character){
+        let number = Int.random(in: 0..<10)
+        let numberWeaponsAttack = Int.random(in: 0..<75)
+        
+        if number == 6 || number == 7{
+            print("COFFRE SURPRISE")
+            print("Voulez vous ouvrir le coffre ?")
+            print("1. OUI")
+            print("2. NON")
+            let sel = Int(readLine() ?? "Unknow") ?? 0
+            switch sel {
+            case 1:
+                print("votre arme a maintenant \(numberWeaponsAttack) PA ")
+                char.weapons.damage = numberWeaponsAttack
+            case 2:
+                print("La partie continue")
+            default:
+                print("erreur de saisi. le jeu continue")
+            }
+        }
     }
     
     func endGame(team1Life : Int, team2Life: Int){
