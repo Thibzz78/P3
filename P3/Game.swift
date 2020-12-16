@@ -202,7 +202,7 @@ class Game{
             if selected1 == 2{
                 print("selectionner le joueur que vous souhaiter soigner")
                 for i in 0...countTeam1{
-                print("\(i) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
+                print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
                 }
                 var sel = Int(readLine() ?? "Unknow") ?? 0
                 switch sel {
