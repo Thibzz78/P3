@@ -15,12 +15,12 @@ class Priest: Character {
     
     func heal(priest : Character, selected : Character){
         if selected.lifePoint <= 0 {
-            print("Le joueur \(selected.name) est mort")
+            print("This character \(selected.name) is dead")
         }
         else{
-            print("Le joueur \(name) soigne le joueur \(selected.name)")
+            print("This character \(name) heal the player \(selected.name)")
             selected.lifePoint = selected.lifePoint + team1[2].healPoint
-            print("point de vie restant : \(selected.lifePoint)")
+            print("Life point remaining : \(selected.lifePoint)")
         }
     }
 }

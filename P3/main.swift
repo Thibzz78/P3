@@ -8,12 +8,12 @@
 import Foundation
 
 var weapons: [Weapon] = [
-    Weapon(name: "👊 Coup de poing", damage: 20),
-    Weapon(name: "🔪 Couteau", damage: 25),
-    Weapon(name: "🔫 Révolver", damage: 30),
+    Weapon(name: "👊 Punch", damage: 20),
+    Weapon(name: "🔪 Knife", damage: 25),
+    Weapon(name: "🔫 Gun", damage: 30),
     Weapon(name: "💣 Grenade", damage: 35),
     Weapon(name: "🧱 Bazooka", damage: 40),
-    Weapon(name: "🚀 Bombe nucléaire", damage: 50)
+    Weapon(name: "🚀 Nuclear bomb", damage: 50)
 ]
 
 var warTeam1 = Warrior()

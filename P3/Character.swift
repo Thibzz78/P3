@@ -25,11 +25,11 @@ class Character{
     
     func attaquer(attacked : Character){
         if attacked.lifePoint <= 0 {
-            print("Le joueur \(attacked.name) est mort")
+            print("This character \(attacked.name) is dead")
         }else{
-            print("attaque du joueur \(attacked.name) avec l'arme \(weapons.name) \(weapons.damage) PA")
+            print("Player attack \(attacked.name) with the \(weapons.name) \(weapons.damage) PA")
             attacked.lifePoint = attacked.lifePoint - weapons.damage
-            print("point de vie restant : \(attacked.lifePoint)")
+            print("Life point remaining : \(attacked.lifePoint)")
         }
     }
 }
