@@ -46,7 +46,7 @@ class Game{
                     teamsNames.append(name)
                     team[i].name = name
                 }else{
-                    print("le nom est incorrect ou existe déjà")
+                    print("le nom est incorrect ou existe déjà\n")
                     continue
                 }
             }
@@ -71,7 +71,7 @@ class Game{
             case 5:
                 team[i].weapons = weapons[5]
             default:
-                print("erreur : aucune arme selectionné, arme par default : \(team[i].weapons.name) \(team[i].weapons.damage) PA")
+                print("erreur : aucune arme selectionné, arme par default : \(team[i].weapons.name) \(team[i].weapons.damage) PA\n")
             }
             i = i + 1
             
@@ -88,7 +88,7 @@ class Game{
         print("\(team2[0].name) a selectionné l'arme : \(team2[0].weapons.name) \(team2[0].weapons.damage) PA")
         print("\(team2[1].name) a selectionné l'arme : \(team2[1].weapons.name) \(team2[1].weapons.damage) PA")
         print("\(team2[2].name) a selectionné l'arme : \(team2[2].weapons.name) \(team2[2].weapons.damage) PA")
-        print("DEMARRAGE DE LA PARTIE !")
+        print("DEMARRAGE DE LA PARTIE !\n")
     }
     
     
@@ -100,51 +100,19 @@ class Game{
         var team : [Character]
         var adverseTeam : [Character]
         var numberTeam : Int = 1
-        
-        
+                
+                
         team = team1
         adverseTeam = team2
         
         repeat{
-        
-            print("Team \(numberTeam) : veuillez choisir un joueur")
-            for i in 0...countTeam1{
-                if team[i].lifePoint > 0{
-                    print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
-                }
-            }
-            var selected = Int(readLine() ?? "Unknow") ?? 0
-            switch selected {
-            case 1:
-                if team[0].lifePoint > 0{
-                    selected = 0
-                }else{
-                    print("Ce joueur est mort")
-                    continue
-                }
-            case 2:
-                if team[1].lifePoint > 0{
-                    selected = 1
-                }else{
-                    print("Ce joueur est mort")
-                    continue
-                }
-            case 3:
-                if team[2].lifePoint > 0{
-                    selected = 2
-                }else{
-                    print("Ce joueur est mort")
-                    continue
-                }
-            default:
-                print("erreur de saisi")
-                continue
-            }
-            print("Choissiez une option")
-            if team[selected].canHeal == true{
-                print("1 : Attaquer")
-                print("2 : Soigner")
-            }
+        print("Team \(numberTeam) : veuillez choisir un joueur")
+        let selected = chooseCharacter(team: team)
+        print("Choissiez une option")
+        if team[selected].canHeal == true{
+            print("1 : Attaquer")
+            print("2 : Soigner")
+        }
             else{
                 print("1 : Attaquer")
             }
@@ -166,71 +134,13 @@ class Game{
             
             if selected1 == 1{
                 print("Selectionner le joueur que vous souhaiter attaquer")
-                for i in 0...countTeam2{
-                    print("\(i + 1) :\(adverseTeam[i].name) \(adverseTeam[i].lifePoint) - \(adverseTeam[i].weapons.name) \(adverseTeam[i].weapons.damage)")
-                }
-                var sel = Int(readLine() ?? "Unknow") ?? 0
-                switch sel {
-                case 1:
-                    if adverseTeam[0].lifePoint > 0{
-                        sel = 0
-                    }else{
-                        print("Ce joueur est mort")
-                        continue
-                    }
-                case 2:
-                    if adverseTeam[1].lifePoint > 0{
-                        sel = 1
-                    }else{
-                        print("Ce joueur est mort")
-                        continue
-                    }
-                case 3:
-                    if adverseTeam[2].lifePoint > 0{
-                        sel = 2
-                    }else{
-                        print("Ce joueur est mort")
-                        continue
-                    }
-                default:
-                    print("erreur de saisi")
-                    continue
-                }
+                let sel = chooseCharacter(team: adverseTeam)
                 myrandom(char: team[selected])
                 team[selected].attaquer(attacked: adverseTeam[sel])
             }
             if selected1 == 2{
                 print("selectionner le joueur que vous souhaiter soigner")
-                for i in 0...countTeam1{
-                print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
-                }
-                var sel = Int(readLine() ?? "Unknow") ?? 0
-                switch sel {
-                case 1:
-                    if team[0].lifePoint <= 0{
-                        print("Ce joueur est mort")
-                        continue
-                    }else{
-                        sel = 0
-                    }
-                case 2:
-                    if team[1].lifePoint <= 0{
-                        print("Ce joueur est mort")
-                        continue
-                    }else{
-                        sel = 1
-                    }
-                case 3:
-                    if team[2].lifePoint <= 0{
-                        print("Ce joueur est mort")
-                        continue
-                    }else{
-                        sel = 2
-                    }
-                default:
-                    print("erreur de saisi")
-                    continue
-                }
+                let sel = chooseCharacter(team: team)
                 let priest = Priest()
                 priest.heal(priest: team[2], selected: team[sel])
             }
@@ -251,6 +161,49 @@ class Game{
             }
         }while totalLifeTeam1 > 0 && totalLifeTeam2 > 0
         endGame(team1Life: totalLifeTeam1, team2Life: totalLifeTeam2)
+    }
+    
+    
+    func chooseCharacter(team : [Character]) -> Int{
+        var bool = false
+        for i in 0...countTeam1{
+            if team[i].lifePoint > 0{
+                print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
+            }
+        }
+        var sel = Int(readLine() ?? "unknow") ?? 0
+        repeat{
+            switch sel {
+            case 1:
+                if team[0].lifePoint <= 0{
+                    print("Ce joueur est mort")
+                    continue
+                }else{
+                    sel = 0
+                    bool = true
+                }
+            case 2:
+                if team[1].lifePoint <= 0{
+                    print("Ce joueur est mort")
+                    continue
+                }else{
+                    sel = 1
+                    bool = true
+                }
+            case 3:
+                if team[2].lifePoint <= 0{
+                    print("Ce joueur est mort")
+                    continue
+                }else{
+                    sel = 2
+                    bool = true
+                }
+            default:
+                print("erreur de saisi")
+                continue
+            }
+        }while bool == false
+        return sel
     }
     
     func myrandom(char : Character){
