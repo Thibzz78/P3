@@ -144,8 +144,9 @@ class Game{
                 let priest = Priest()
                 priest.heal(priest: team[2], selected: team[sel])
             }
-            totalLifeTeam1 = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
-            totalLifeTeam2 = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
+            totalLifeTeam1 = totalLifePoint(team: team1)
+            totalLifeTeam2 = totalLifePoint(team: team2)
+            
             turnCount = turnCount + 1
             if isTeam1Turn == true{
                 team = team2
@@ -163,9 +164,14 @@ class Game{
         endGame(team1Life: totalLifeTeam1, team2Life: totalLifeTeam2)
     }
     
+    func totalLifePoint(team : [Character]) -> Int{
+        let teamLife = team[0].lifePoint + team[1].lifePoint + team[2].lifePoint
+        return teamLife
+    }
+    
     
     func chooseCharacter(team : [Character]) -> Int{
-        var bool = false
+        var choose = false
         for i in 0...countTeam1{
             if team[i].lifePoint > 0{
                 print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
@@ -175,34 +181,31 @@ class Game{
         repeat{
             switch sel {
             case 1:
-                if team[0].lifePoint <= 0{
+                guard team[0].lifePoint <= 0 else {
                     print("This character is dead")
                     continue
-                }else{
+                }
                     sel = 0
-                    bool = true
-                }
+                    choose = true
             case 2:
-                if team[1].lifePoint <= 0{
+                guard team[1].lifePoint <= 0 else {
                     print("This character is dead")
                     continue
-                }else{
+                }
                     sel = 1
-                    bool = true
-                }
+                    choose = true
             case 3:
-                if team[2].lifePoint <= 0{
+                guard team[2].lifePoint <= 0 else {
                     print("This character is dead")
                     continue
-                }else{
-                    sel = 2
-                    bool = true
                 }
+                    sel = 2
+                    choose = true
             default:
                 print("Typing error")
                 continue
             }
-        }while bool == false
+        }while choose == false
         return sel
     }
     
