@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Weapon{
+struct Weapon{
     
     var name : String
     var damage : Int

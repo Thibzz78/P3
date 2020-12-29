@@ -23,7 +23,7 @@ class Character{
         self.weapons = weapons
     }
     
-    func attaquer(attacked : Character){
+    func attack(attacked : Character){
         if attacked.lifePoint <= 0 {
             print("This character \(attacked.name) is dead")
         }else{

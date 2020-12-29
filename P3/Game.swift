@@ -50,7 +50,15 @@ class Game{
                     continue
                 }
             }
+            chooseWaepons(team: team, weaponCount: weaponCount, i : i)
+            i = i + 1
             
+        } while i != countTeam1 + 1
+    }
+    
+    func chooseWaepons(team : [Character], weaponCount : Int, i : Int){
+        var chooseIsCorrect : Bool = false
+        repeat{
             print("Choose a weapon for \(team[i].name)")
             
             for i in 0...weaponCount {
@@ -60,24 +68,29 @@ class Game{
             switch selected {
             case 0:
                 team[i].weapons = weapons[0]
+                chooseIsCorrect = true
             case 1:
                 team[i].weapons = weapons[1]
+                chooseIsCorrect = true
             case 2:
                 team[i].weapons = weapons[2]
+                chooseIsCorrect = true
             case 3:
                 team[i].weapons = weapons[3]
+                chooseIsCorrect = true
             case 4:
                 team[i].weapons = weapons[4]
+                chooseIsCorrect = true
             case 5:
                 team[i].weapons = weapons[5]
+                chooseIsCorrect = true
             default:
-                print("Error: no weapon selected, default weapon : \(team[i].weapons.name) \(team[i].weapons.damage) PA\n")
+                print("Error: no weapon selected")
+                continue
             }
-            i = i + 1
             
-        } while i != countTeam1 + 1
+        }while chooseIsCorrect == false
     }
-    
     
     private func showTeams(){
         print("////////////////////////////////////////////////////////////////")
@@ -94,8 +107,6 @@ class Game{
     
     
     func startGame(){
-        var totalLifeTeam1 : Int = team1[0].lifePoint + team1[1].lifePoint + team1[2].lifePoint
-        var totalLifeTeam2 : Int = team2[0].lifePoint + team2[1].lifePoint + team2[2].lifePoint
         var isTeam1Turn = true
         var team : [Character]
         var adverseTeam : [Character]
@@ -135,8 +146,8 @@ class Game{
             if selected1 == 1{
                 print("Select the character you want to attack")
                 let sel = chooseCharacter(team: adverseTeam)
-                myrandom(char: team[selected])
-                team[selected].attaquer(attacked: adverseTeam[sel])
+                randomChest(char: team[selected])
+                team[selected].attack(attacked: adverseTeam[sel])
             }
             if selected1 == 2{
                 print("Select the character you want to heal")
@@ -144,9 +155,7 @@ class Game{
                 let priest = Priest()
                 priest.heal(priest: team[2], selected: team[sel])
             }
-            totalLifeTeam1 = totalLifePoint(team: team1)
-            totalLifeTeam2 = totalLifePoint(team: team2)
-            
+
             turnCount = turnCount + 1
             if isTeam1Turn == true{
                 team = team2
@@ -160,8 +169,8 @@ class Game{
                 adverseTeam = team2
                 isTeam1Turn = true
             }
-        }while totalLifeTeam1 > 0 && totalLifeTeam2 > 0
-        endGame(team1Life: totalLifeTeam1, team2Life: totalLifeTeam2)
+        }while totalLifePoint(team : team1) > 0 && totalLifePoint(team : team2) > 0
+        endGame(team1Life: totalLifePoint(team: team1), team2Life: totalLifePoint(team: team2))
     }
     
     func totalLifePoint(team : [Character]) -> Int{
@@ -181,21 +190,21 @@ class Game{
         repeat{
             switch sel {
             case 1:
-                guard team[0].lifePoint <= 0 else {
+                guard team[0].lifePoint > 0 else {
                     print("This character is dead")
                     continue
                 }
                     sel = 0
                     choose = true
             case 2:
-                guard team[1].lifePoint <= 0 else {
+                guard team[1].lifePoint > 0 else {
                     print("This character is dead")
                     continue
                 }
                     sel = 1
                     choose = true
             case 3:
-                guard team[2].lifePoint <= 0 else {
+                guard team[2].lifePoint > 0 else {
                     print("This character is dead")
                     continue
                 }
@@ -209,7 +218,7 @@ class Game{
         return sel
     }
     
-    func myrandom(char : Character){
+    func randomChest(char : Character){
         let number = Int.random(in: 0..<10)
         let numberWeaponsAttack = Int.random(in: 0..<75)
         
