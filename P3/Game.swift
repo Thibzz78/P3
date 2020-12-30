@@ -181,13 +181,13 @@ class Game{
     
     func chooseCharacter(team : [Character]) -> Int{
         var choose = false
-        for i in 0...countTeam1{
-            if team[i].lifePoint > 0{
-                print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
-            }
-        }
-        var sel = Int(readLine() ?? "unknow") ?? 0
         repeat{
+            for i in 0...countTeam1{
+                if team[i].lifePoint > 0{
+                    print("\(i + 1) :\(team[i].name) \(team[i].lifePoint) - \(team[i].weapons.name) \(team[i].weapons.damage)")
+                }
+            }
+            var sel = Int(readLine() ?? "unknow") ?? 0
             switch sel {
             case 1:
                 guard team[0].lifePoint > 0 else {
@@ -214,8 +214,8 @@ class Game{
                 print("Typing error")
                 continue
             }
+            return sel
         }while choose == false
-        return sel
     }
     
     func randomChest(char : Character){
