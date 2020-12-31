@@ -34,6 +34,7 @@ class Game{
         startGame()
     }
 
+    // Assign a name to every Character
     private func askForName(team : [Character], teamName : String){
         var i : Int = 0
         let weaponCount = weapons.count - 1
@@ -55,7 +56,7 @@ class Game{
             
         } while i != countTeam1 + 1
     }
-    
+    // Assign a waepon to every character
     func chooseWaepons(team : [Character], weaponCount : Int, i : Int){
         var chooseIsCorrect : Bool = false
         repeat{
@@ -92,6 +93,7 @@ class Game{
         }while chooseIsCorrect == false
     }
     
+    //displays the properties of each team
     private func showTeams(){
         print("////////////////////////////////////////////////////////////////")
         print("\(team1[0].name) selected the weapon : \(team1[0].weapons.name) \(team1[0].weapons.damage) PA")
@@ -218,6 +220,7 @@ class Game{
         }while choose == false
     }
     
+    // random chest
     func randomChest(char : Character){
         let number = Int.random(in: 0..<10)
         let numberWeaponsAttack = Int.random(in: 0..<75)
