@@ -19,7 +19,7 @@ class Priest: Character {
         }
         else{
             print("This character \(name) heal the player \(selected.name)")
-            selected.lifePoint = selected.lifePoint + team1[2].healPoint
+            selected.lifePoint = selected.lifePoint + priest.healPoint
             print("Life point remaining : \(selected.lifePoint)")
         }
     }

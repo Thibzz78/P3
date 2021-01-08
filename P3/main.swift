@@ -19,14 +19,13 @@ var weapons: [Weapon] = [
 var warrior = Warrior()
 var magus = Magus()
 var priest = Priest()
+var chevalier = Chevalier()
 
 var warrior2 = Warrior()
 var magus2 = Magus()
 var priest2 = Priest()
+var chevalier2 = Chevalier()
 
-var team1 = [warrior, magus, priest]
-var team2 = [warrior2, magus2, priest2]
-var game = Game(team1: team1, team2: team2)
+var game = Game()
 
 game.createTeam()
-

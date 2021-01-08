@@ -14,6 +14,8 @@
 		801358A2256D18A100F652EB /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801358A1256D18A100F652EB /* Warrior.swift */; };
 		801358A5256D18AA00F652EB /* Magus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801358A4256D18AA00F652EB /* Magus.swift */; };
 		801358A8256D18B300F652EB /* Priest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801358A7256D18B300F652EB /* Priest.swift */; };
+		8026230925A728D200B2A9E4 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026230825A728D200B2A9E4 /* Team.swift */; };
+		8026231025A8E0D700B2A9E4 /* Chevalier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026230F25A8E0D700B2A9E4 /* Chevalier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,8 @@
 		801358A1256D18A100F652EB /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		801358A4256D18AA00F652EB /* Magus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magus.swift; sourceTree = "<group>"; };
 		801358A7256D18B300F652EB /* Priest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priest.swift; sourceTree = "<group>"; };
+		8026230825A728D200B2A9E4 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		8026230F25A8E0D700B2A9E4 /* Chevalier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chevalier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,10 +76,12 @@
 				80135890256D184400F652EB /* main.swift */,
 				80135898256D188000F652EB /* Character.swift */,
 				8013589B256D188A00F652EB /* Game.swift */,
+				8026230825A728D200B2A9E4 /* Team.swift */,
 				8013589E256D189700F652EB /* Weapon.swift */,
 				801358A1256D18A100F652EB /* Warrior.swift */,
 				801358A4256D18AA00F652EB /* Magus.swift */,
 				801358A7256D18B300F652EB /* Priest.swift */,
+				8026230F25A8E0D700B2A9E4 /* Chevalier.swift */,
 			);
 			path = P3;
 			sourceTree = "<group>";
@@ -141,9 +147,11 @@
 				801358A2256D18A100F652EB /* Warrior.swift in Sources */,
 				8013589F256D189700F652EB /* Weapon.swift in Sources */,
 				801358A8256D18B300F652EB /* Priest.swift in Sources */,
+				8026230925A728D200B2A9E4 /* Team.swift in Sources */,
 				8013589C256D188A00F652EB /* Game.swift in Sources */,
 				80135899256D188000F652EB /* Character.swift in Sources */,
 				801358A5256D18AA00F652EB /* Magus.swift in Sources */,
+				8026231025A8E0D700B2A9E4 /* Chevalier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
