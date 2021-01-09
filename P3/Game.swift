@@ -11,7 +11,7 @@ class Game{
 
         var turnCount : Int = 0
         var teams = [Team]()
-    
+        
 
 
     func createTeam(){
@@ -22,7 +22,7 @@ class Game{
             
             let team = Team(team: myteam, teamName: "TEAM\(i+1)")
             teams.append(team)
-            
+
             team.askForName()
             
             team.showTeams()

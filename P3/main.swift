@@ -27,5 +27,6 @@ var priest2 = Priest()
 var chevalier2 = Chevalier()
 
 var game = Game()
+var teamsNames = [String]()
 
 game.createTeam()

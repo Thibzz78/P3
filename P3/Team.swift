@@ -12,7 +12,6 @@ class Team {
     
   var team : [Character]
   var teamName : String
-  var teamsNames = [String]()
   let countTeam : Int
 
     init(team: [Character], teamName : String) {
@@ -22,7 +21,7 @@ class Team {
       }
 
     // Assign a name to every Character
-       func askForName(){
+    func askForName(){
           var i : Int = 0
           let weaponCount = weapons.count - 1
           
